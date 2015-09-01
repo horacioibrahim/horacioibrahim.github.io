@@ -1,0 +1,16 @@
+{
+    "name": "simple-fit",
+    "license": "MIT",
+    "destination_path": "bower_components",
+    "private": false,
+    "ignore": ["/.*", "/tests/"],
+    "dependencies": {
+        "polymer": "Polymer/polymer#^1.0.0"
+    },
+    "devDependencies": {
+        "web-component-tester": "*"
+    },
+    "keywords": ["web-component", "web-components", "polymer"],
+    "main": ["simple-fit.html"],
+    "description": "Element can to be centered in page."
+}

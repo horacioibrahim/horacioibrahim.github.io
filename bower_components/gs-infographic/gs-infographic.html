@@ -1,0 +1,353 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="../ds-legend-type1/ds-legend-type1.html">
+<link rel="import" href="../gs-compare-dropdown/gs-compare-dropdown.html">
+<link rel="import" href="../simple-fit/simple-fit.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../ds-highcharts/ds-barstacked.html">
+<link rel="import" href="../ds-highcharts/pie-circle.html">
+<link rel="import" href="../ds-form-between/ds-form-between.html">
+
+
+<!--
+gs-infographic element providing a solution to presentation data.
+
+Example:
+
+    <gs-infographic></gs-infographic>
+
+@group gs Elements
+@element gs-infographic
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="gs-infographic">
+
+  <style>
+    :host {
+      @apply(--paper-font-body2);
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 40px auto 60px auto;
+      color: var(--paper-brown-500);
+    }
+
+    h1 small {
+      font-size: 18px;
+      color: var(--paper-brown-100);
+    }
+
+    [section] {
+      @apply(--layout-vertical);
+      min-height: 300px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    [header] {
+      @apply(--layout-center-center);
+      width: 380px;
+      padding-left: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: var(--paper-cyan-300);
+      font-size: 18px;
+      color: white;
+    }
+    [headline] {
+      @apply(--layout-horizontal);
+      height: 2px;
+      background-color: var(--paper-cyan-400);
+    }
+    [content] {
+      @apply(--layout-vertical);
+      padding-top: 30px;
+      font-size: 17px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    .highlight {
+      font-size: 20px;
+      line-height: 26px;
+      font-weight: 700;
+      color: var(--paper-cyan-400);
+    }
+    [content-line] {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      @apply(--layout-center-center);
+      text-align: center;
+      line-height: 30px;
+      margin: 15px;
+    }
+    [content-line] h1 {
+      font-size: 28px;
+      padding: 0px 20px 20px 20px;
+    }
+    [content-line] h2 {
+      font-size: 36px;
+      font-weight: 300;
+    }
+    [content-half] {
+      @apply(--layout-vertical);
+    }
+    [created] {
+      background-color: var(--paper-brown-500);
+    }
+    .half {
+
+      @apply(--layout-center);
+      text-align: center;
+    }
+    .half.left {
+      width: 20%;
+      @apply(--layout-center);
+      text-align: center;
+      vertical-align: middle;
+    }
+    .half.right {
+      width: 80%;
+      @apply(--layout-center);
+      text-align: center;
+    }
+    .half h1 {
+      font-size: 75px;
+    }
+    .critical, .high, .moderate, .low {
+
+    }
+    .critical {
+      padding: 10px;
+      background-color: var(--paper-red-400);
+      border-bottom: 2px solid var(--paper-red-700);
+    }
+    .high {
+      padding: 10px;
+      background-color: var(--paper-yellow-600);
+      border-bottom: 2px solid var(--paper-yellow-700);
+    }
+    .moderate {
+      padding: 10px;
+      background-color: var(--paper-yellow-200);
+      border-bottom: 2px solid var(--paper-yellow-600);
+    }
+    .low {
+      padding: 10px;
+      background-color: var(--paper-grey-200);
+      border-bottom: 2px solid var(--paper-grey-400);
+    }
+    .form {
+      width: 100%;
+    }
+    .summary {
+      padding-top: 0;
+      margin-top: -60px;
+      text-align: center;
+      font-size: 22px;
+      line-height: 28px;
+    }
+    iron-icon {
+      color: var(--paper-cyan-400);
+    }
+  </style>
+
+  <template>
+    <simple-fit autoFitOnAttach>
+        <h1>Mozilla Firefox: Vulnerabilidades conhecidas<br>
+          <small>do mais antigo a versão atual.</small></h1>
+          <!-- section summary-->
+          <div section>
+            <div header>Por que atualizar?
+            </div>
+            <div headline></div>
+            <div content-line>
+              <span><h1>Melhoria significativa<br>da tecnologia</h1></span>
+              <span><h2>vs</h2></span>
+              <span><h1>Vulnerabilidades<br>de segurança <iron-icon icon="check"></iron-icon></h1></span>
+            </div>
+            <div content class="summary">
+              <p>Há <span class="highlight">176</span> atualizações de segurança entre as versões <span class="highlight">26 a 40</span> do Mozilla Firefox. E mais centenas de atualizações de avanços tecnológicos em consonância com o HTML5 e ecossitema.</p>
+            </div>
+          </div>
+        <!-- section impact keys of the fixes -->
+        <div section>
+          <div header>Classificação do impacto
+          </div>
+          <div headline></div>
+          <div content>
+            <ds-legend-type1>
+              <div class="label critical">CRÍTICA</div>
+              <div class="caption">
+              Vulnerabilidade que poder ser usada para rodar um código malicioso e instalar um software sem necessitar de intervenção do usuário além de uma navegação normal.</div>
+            </ds-legend-type1>
+            <ds-legend-type1>
+              <div class="label high">ALTA</div>
+              <div class="caption">
+              Vulnerabilidade que pode ser usada para coletar dados sensíveis de sites em outras janelas ou injetar dados ou código para esses sites, sem consentimento do usuário.
+              </div>
+            </ds-legend-type1>
+            <ds-legend-type1>
+              <div class="label moderate">MODERADA</div>
+              <div class="caption">Vulnerabilidades que poderiam ser consideradas Alta ou Crítica, exceto porque elas só funcionam em configurações incomuns ou exigem que o usuário execute passos complicados e/ou improváveis.</div>
+            </ds-legend-type1>
+            <ds-legend-type1>
+              <div class="label low">LOW</div>
+              <div class="caption">Vulnerabilidades de impactos menores, tais como ataques de negação de serviço, vazamentos de dados menos sensíveis ou fraudes. (Fraudes indetectáveis relacionadas ao SSL teriam um impacto "Alto", porque são geralmente utilizadas para roubar dados sensíveis, destinados a outros sites.)</div>
+            </ds-legend-type1>
+          </div>
+        </div>
+        <!-- section evolution of the fixes -->
+        <div section>
+          <div header>Histórico de atualizações
+          </div>
+          <div headline></div>
+          <div content>
+            <!-- chart here -->
+            <ds-barstacked></ds-barstacked>
+          </div>
+        </div>
+        <!-- section comparations -->
+        <div section>
+          <div header>Comparação das atualizações</div>
+          <div headline></div>
+          <div content-half>
+            <!-- <div class="form">
+              <ds-form-between></ds-form-between>
+            </div>
+          -->
+            <pie-circle></pie-circle>
+          </div>
+        </div>
+        <!-- section created by -->
+        <div section>
+          <div header created>Criado por
+          </div>
+          <div headline created></div>
+          <div content>
+            <p>@horacioibrahim</p>
+            <small>
+              Este serviço já foi pago, mas um chocolate quente é muito bem-vindo!
+            </small>
+            <p><small>Fonte: https://www.mozilla.org/en-US/security/known-vulnerabilities/firefox/</small></p>
+          </div>
+        </div>
+    </simple-fit>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'gs-infographic',
+    properties: {
+
+      /**
+       * `fancy` indicates that the element should don a monocle and tophat,
+       * while checking its pocket watch.
+       */
+      fancy: Boolean,
+
+      /**
+       * Describes the author of the element, but is really just an excuse to
+       * show off JSDoc annotations.
+       *
+       * @type {{name: string, image: string}}
+       */
+      author: {
+        type: Object,
+        // Use `value` to provide a default value for a property, by setting it
+        // on your element's prototype.
+        //
+        // If you provide a function, as we do here, Polymer will call that
+        // _per element instance_.
+        //
+        // We do that to ensure that each element gets its own copy of the
+        // value, rather than having it shared across all instances (via the
+        // prototype).
+        value: function() {
+          return {
+            name:  'Horacio Ibrahim',
+            image: 'https://avatars.githubusercontent.com/u/1104460?v=3',
+          };
+        }
+      },
+
+    },
+
+    // Element Lifecycle
+
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+    },
+
+    attached: function() {
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+      // parece ser uma solução para sc-link. quando attached. O pai e o
+      // filho foram redenrizado!!!
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    },
+
+    // Element Behavior
+
+    /**
+     * The `gs-infographic-lasers` event is fired whenever `fireLasers` is called.
+     *
+     * @event gs-infographic-lasers
+     * @detail {{sound: String}}
+     */
+
+    /**
+     * Sometimes it's just nice to say hi.
+     *
+     * @param {string} greeting A positive greeting.
+     * @return {string} The full greeting.
+     */
+    sayHello: function(greeting) {
+      var response = greeting || 'Hello World!';
+      return 'gs-infographic says, ' + response;
+    },
+
+    /**
+     * Attempt to destroy this element's enemies with a beam of light!
+     *
+     * Or, at least, dispatch an event in the vain hope that someone else will
+     * do the zapping.
+     */
+    fireLasers: function() {
+      this.fire('gs-infographic-lasers', {sound: 'Pew pew!'});
+    }
+
+  });
+
+</script>
