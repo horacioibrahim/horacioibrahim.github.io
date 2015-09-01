@@ -16219,6 +16219,10 @@ Example:
       font-weight: 700;
       color: var(--paper-cyan-400);
     }
+    .highlight.super {
+      font-size: 90px;
+      line-height: 26px;
+    }
     [content-line] {
       @apply(--layout-horizontal);
       @apply(--layout-center);
@@ -16289,10 +16293,20 @@ Example:
     .summary {
       padding-top: 0;
       margin-top: -60px;
-      text-align: center;
+      text-align: right;
       font-size: 22px;
       line-height: 28px;
+      font-weight: 300;
     }
+    .summary p {
+      padding-top: 17px;
+      padding-left: 40px;
+    }
+    .summary p a {
+        color: var(--paper-cyan-400);
+        text-decoration: none;
+    }
+
     iron-icon {
       color: var(--paper-cyan-400);
     }
@@ -16312,8 +16326,9 @@ Example:
               <span><h2>vs</h2></span>
               <span><h1>Vulnerabilidades<br>de segurança <iron-icon icon="check"></iron-icon></h1></span>
             </div>
-            <div content="" class="summary">
-              <p>Há <span class="highlight">176</span> atualizações de segurança entre as versões <span class="highlight">26 a 40</span> do Mozilla Firefox. E mais centenas de atualizações de avanços tecnológicos em consonância com o HTML5 e ecossitema.</p>
+            <div content-line="" class="summary">
+              <span class="highlight super">176</span>
+              <p>é o número de atualizações de segurança entre as versões 26 a 40 do Mozilla Firefox. Existem também <a target="_blank" href="https://www.mozilla.org/en-US/firefox/releases/">centenas de atualizações</a> de avanços tecnológicos em consonância com o HTML5 e ecossitema.</p>
             </div>
           </div>
         <!-- section impact keys of the fixes -->
